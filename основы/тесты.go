@@ -1,21 +1,25 @@
+package main
+
+import "testing"
+
 //Стандартные тесты в Golang пишутся с применением пакета testing
 func TestSomething(t *testing.T) {
-// ...
+	// ...
 }
 
 //Использование t.Run для запуска подтестов
 
 func TestConcurrentFunctionality(t *testing.T) {
-    t.Run("Increment", testIncrement)
-    t.Run("Decrement", testDecrement)
+	t.Run("Increment", testIncrement)
+	t.Run("Decrement", testDecrement)
 }
 
 func testIncrement(t *testing.T) {
-// тело теста инкрементации...
+	// тело теста инкрементации...
 }
 
 func testDecrement(t *testing.T) {
-// тело теста декрементации...
+	// тело теста декрементации...
 }
 
 //запуск тестов
