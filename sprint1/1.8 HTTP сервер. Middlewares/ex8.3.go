@@ -25,7 +25,7 @@ func Authorization(next http.HandlerFunc) http.HandlerFunc {
 	}
 }
 
-func answerHandler(w http.ResponseWriter, r *http.Request) {
+func answerHandler(w http.ResponseWriter) {
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprint(w, "The answer is 42")
 }
