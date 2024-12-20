@@ -1,0 +1,48 @@
+Для записи данных в формате JSON в Go нужна функция Marshal() из пакета encoding/json. Эта функция принимает на вход переменную с данными и возвращает байтовый массив с данными в нужном формате
+
+"type Person struct {
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+}
+
+func main() {
+    person := Person{Name: "John", Age: 30}
+    jsonBytes, err := json.Marshal(person)
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(string(jsonBytes))
+}"
+
+В этом примере мы создали переменную person типа Person и заполнили её данными. Затем мы использовали функцию Marshal(), чтобы записать данные в JSON, и преобразовали байтовый массив в строку с помощью функции string().
+
+//прочитать данные из файла
+
+
+"type Person struct {
+	Name  string `json:"name"`  // Поле Name для хранения имени
+	Email string `json:"email"` // Поле Email для хранения адреса электронной почты
+}
+
+func main() {
+	file, err := os.Open("data.json") // Открываем файл "data.json"
+	if err != nil {
+		fmt.Println("Ошибка при открытии файла:", err)
+		return
+	}
+	defer file.Close()
+
+	byteValue, _ := io.ReadAll(file) // Считываем содержимое файла
+
+	var person Person                        // Создаём переменную для хранения данных из JSON
+	err = json.Unmarshal(byteValue, &person) // Декодируем JSON в структуру Person
+	if err != nil {
+		fmt.Println("Ошибка при декодировании JSON:", err)
+		return
+	}
+
+	fmt.Println("Имя:", person.Name)    // Выводим имя из структуры Person
+	fmt.Println("Email:", person.Email) // Выводим адрес электронной почты из структуры Person
+}
+"
+Здесь мы открываем файл data.json, считываем его содержимое и декодируем JSON в структуру Person. Затем мы выводим значения Name и Email из структуры Person.
